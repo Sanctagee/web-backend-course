@@ -1,6 +1,7 @@
+
 /* ******************************************
  * This server.js file is the primary file of the 
- * application. It is used to control the project.
+ * application. It is used to control the project.   Note that order of writing these code is very import
  *******************************************/
 /* ***********************
  * Require Statements
@@ -12,26 +13,31 @@ const app = express()
 const static = require("./routes/static")
 
 /* ***********************
- * Routes
- *************************/
-app.use(static)
-
-/* ***********************
- * Express Route for Home Page
- *************************/
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Home Page - CSE 340",
-    message: "Welcome to CSE 340 Backend Development!"
-  });
-});
-
-/* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
+
+/* ***********************
+ * Routes
+ *************************/
+app.use(static)
+
+// Index route
+app.get("/", function(req, res){
+  res.render("index", {title: "Home"})
+})
+
+/* ***********************
+ * Express Route for Home Page
+ *************************/
+// app.get("/", (req, res) => {
+//   res.render("index", {
+//     title: "Home Page - CSE 340",
+//     message: "Welcome to CSE 340 Backend Development!"
+//   });
+// });
 
 /* ***********************
  * Local Server Information
