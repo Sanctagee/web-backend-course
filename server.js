@@ -11,6 +11,25 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const pool = require('./database/')
+
+
+/* ***********************
+ * Database Connection
+ *************************/
+app.use(async (req, res, next) => {
+  try {
+    // Test database connection
+    const client = await pool.connect();
+    console.log('Database connected successfully');
+    client.release();
+    next();
+  } catch (error) {
+    console.error('Database connection error:', error);
+    next(error);
+  }
+});
+
 
 /* ***********************
  * View Engine and Templates
@@ -52,3 +71,4 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
