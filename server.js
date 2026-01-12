@@ -1,4 +1,3 @@
-
 /* ******************************************
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
@@ -6,30 +5,28 @@
 /* ***********************
  * Require Statements
  *************************/
-const express = require("express")
-const expressLayouts = require("express-ejs-layouts")
+const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
 
 // Load environment variables
 if (process.env.NODE_ENV !== 'production') {
-  require("dotenv").config()
-  console.log('Development mode: .env loaded')
+  require("dotenv").config();
 }
 
-const app = express()
-const static = require("./routes/static")
-
-// Only require database in production
-let pool;
-if (process.env.NODE_ENV === 'production') {
-  pool = require('./database/')
-}
+const app = express();
+const static = require("./routes/static");
 
 /* ***********************
  * View Engine and Templates
  *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout")
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "./layouts/layout");
+
+/* ***********************
+ * Static Files Middleware
+ *************************/
+app.use(express.static('public'));
 
 /* ***********************
  * Routes
@@ -42,7 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(static)
+app.use(static);
 
 /* ***********************
  * Express Route for Home Page
@@ -54,21 +51,24 @@ app.get("/", function(req, res){
   });
 });
 
-// Simple test route without database
-app.get("/test", function(req, res){
-  res.send("Server is working - Database connection optional");
+/* ***********************
+ * Test route for Render
+ *************************/
+app.get("/render-test", function(req, res){
+  res.send("Render deployment successful at: " + new Date().toISOString());
 });
 
 /* ***********************
  * Local Server Information
+ * VALUES FROM .env OR DEFAULTS
  *************************/
-const port = process.env.PORT || 5500
-const host = process.env.HOST || 'localhost'
+const port = process.env.PORT || 5500;
+const host = process.env.HOST || '0.0.0.0'; // CRITICAL: 0.0.0.0 for Render
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
 app.listen(port, host, () => {
-  console.log(`Server listening on http://${host}:${port}`)
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`)
-})
+  console.log(`Server listening on http://${host}:${port}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});
