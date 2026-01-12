@@ -1,41 +1,70 @@
-
 <div class="home-container">
-    <section class="hero">
-        <h1>Welcome to CSE Motors</h1>
-        <p>Your premier destination for quality vehicles and exceptional service</p>
-        <button id="tools">
-            <a href="/inventory" class="btn">View Our Inventory</a>
-        </button>
-    </section>
-  
-    <section class="features">
-        <div class="feature-card">
-            <h2>Quality Vehicles</h2>
-            <p>Browse our selection of top-quality vehicles from trusted brands.</p>
-            <p>We offer only the best pre-owned vehicles with full inspection reports.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h2>Expert Service</h2>
-            <p>Our certified technicians provide professional maintenance and repairs.</p>
-        </div>
+  <!-- Welcome Banner -->
+  <section class="welcome-banner">
+    <h1>Welcome to CSE Motors!</h1>
+  </section>
 
-        <div class="feature-card">
-            <h2>Great Prices</h3>
-            <p>Competitive pricing with financing options available for all buyers.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h2>Customer First</h2>
-            <p>We're committed to providing the best customer experience possible.</p>
-            <p>Our team of automotive experts is here to help you find the perfect vehicle.</p>
-        </div>
-    </section>
+  <!-- Hero Section with DMC Delorean -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <h2>DMC Delorean</h2>
+      <ul class="features-list">
+        <li>3 Cup holders</li>
+        <li>Superman doors</li>
+        <li>Fuzzy dice!</li>
+      </ul>
+      <a href="/inv/detail/1" class="btn-own-today">
+        <img src="/images/site/own_today.png" alt="Own Today" onerror="this.parentElement.innerHTML='<button class=btn-primary>Own Today</button>'">
+      </a>
+    </div>
+    <div class="hero-image">
+      <img src="/images/vehicles/delorean.jpg" alt="DMC Delorean">
+    </div>
+  </section>
 
-    <section class="contact">
-        <h2>Visit Us Today</h2>
-        <marquee behavior="" direction="right">
-            <p>55 New Heaven Road, Enugu · Open Monday-Friday: 9am-6pm</p>
-        </marquee>
-    </section>
+  <!-- Main Content Grid (Upgrades + Reviews) -->
+  <section class="main-content-grid">
+    <!-- Upgrades Section -->
+    <div class="upgrades-section">
+      <h2>Delorean Upgrades</h2>
+      <div class="upgrades-grid">
+        <div class="upgrade-item">
+          <a href="/upgrades/flux-capacitor">
+            <img src="/images/upgrades/flux-cap.png" alt="Flux Capacitor">
+            <h3>Flux Capacitor</h3>
+          </a>
+        </div>
+        <div class="upgrade-item">
+          <a href="/upgrades/flame-decals">
+            <img src="/images/upgrades/flame.jpg" alt="Flame Decals">
+            <h3>Flame Decals</h3>
+          </a>
+        </div>
+        <div class="upgrade-item">
+          <a href="/upgrades/bumper-stickers">
+            <img src="/images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers">
+            <h3>Bumper Stickers</h3>
+          </a>
+        </div>
+        <div class="upgrade-item">
+          <a href="/upgrades/hub-caps">
+            <img src="/images/upgrades/hub-cap.jpg" alt="Hub Caps">
+            <h3>Hub Caps</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+      <h2>DMC Delorean Reviews</h2>
+      <ul class="reviews-list">
+        <li>"So fast it's almost like traveling in time." (4/5)</li>
+        <li>"Coolest ride on the road!" (4/5)</li>
+        <li>"I'm feeling McFly!" (5/5)</li>
+        <li>"The most futuristic ride of our day!" (4.5/5)</li>
+        <li>"80's livin and I love it!" (5/5)</li>
+      </ul>
+    </div>
+  </section>
 </div>
