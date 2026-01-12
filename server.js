@@ -1,74 +1,74 @@
 
 /* ******************************************
  * This server.js file is the primary file of the 
- * application. It is used to control the project.   Note that order of writing these code is very import
+ * application. It is used to control the project.
  *******************************************/
 /* ***********************
  * Require Statements
  *************************/
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
-const env = require("dotenv").config()
+
+// Load environment variables
+if (process.env.NODE_ENV !== 'production') {
+  require("dotenv").config()
+  console.log('Development mode: .env loaded')
+}
+
 const app = express()
 const static = require("./routes/static")
-const pool = require('./database/')
 
-
-/* ***********************
- * Database Connection
- *************************/
-app.use(async (req, res, next) => {
-  try {
-    // Test database connection
-    const client = await pool.connect();
-    console.log('Database connected successfully');
-    client.release();
-    next();
-  } catch (error) {
-    console.error('Database connection error:', error);
-    next(error);
-  }
-});
-
+// Only require database in production
+let pool;
+if (process.env.NODE_ENV === 'production') {
+  pool = require('./database/')
+}
 
 /* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout")
 
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+app.use((req, res, next) => {
+  // Set baseURL based on environment
+  res.locals.baseURL = process.env.NODE_ENV === 'production' 
+    ? 'https://web-backend-course.onrender.com'
+    : 'http://localhost:5500';
+  next();
+});
 
-// Index route
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+app.use(static)
 
 /* ***********************
  * Express Route for Home Page
  *************************/
-// app.get("/", (req, res) => {
-//   res.render("index", {
-//     title: "Home Page - CSE 340",
-//     message: "Welcome to CSE 340 Backend Development!"
-//   });
-// });
+app.get("/", function(req, res){
+  res.render("index", {
+    title: "Home",
+    metaDescription: "Welcome to CSE Motors - Your trusted automotive partner"
+  });
+});
+
+// Simple test route without database
+app.get("/test", function(req, res){
+  res.send("Server is working - Database connection optional");
+});
 
 /* ***********************
  * Local Server Information
- * Values from .env (environment) file
  *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+const port = process.env.PORT || 5500
+const host = process.env.HOST || 'localhost'
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
+app.listen(port, host, () => {
+  console.log(`Server listening on http://${host}:${port}`)
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`)
 })
-
