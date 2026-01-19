@@ -11,12 +11,28 @@ node_modules
 # values not to be shared and most of the values
 # will be manually created by you or dynamically # created on the hosting server
 .env
+.env.local
 
 # ignore lock yaml file
 pnpm-lock.yaml
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Package manager files
+package-lock.json
+
+# Temporary files
+tmp/
+temp/
 
 # .DS_Store is only for Mac users
 **/.DS_Store
 
 #  ignore the README file
 README.md
+
+# To include the setting.json file after changing the password
+.vscode/settings.json
