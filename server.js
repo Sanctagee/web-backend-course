@@ -11,6 +11,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
+const inventoryRoute = require("./routes/inventoryRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+/*
 // Temporary placeholder route for vehicle classifications, seen by clicking the nav options
 app.get("/inv/type/:classificationId", (req, res) => {
   res.send(`
@@ -45,26 +47,26 @@ app.get("/inv/type/:classificationId", (req, res) => {
 })
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+*/
 
 // Index route
 app.get("/", baseController.buildHome)
 
-
-
-// Index route
-app.get("/", baseController.buildHome)
+// Inventory routes
+app.use("/inv", inventoryRoute)
 
 
 /* ***********************
  * Local Server Information
  * Values from .env (defaults in case .env is not working)
  *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+const port = process.env.PORT || 5500
+const host = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log(`app listening on ${host}:${port}`)
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`)
 })
