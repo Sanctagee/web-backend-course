@@ -5,70 +5,66 @@
 /* ***********************
  * Require Statements
  *************************/
-const express = require("express");
-const expressLayouts = require("express-ejs-layouts");
-
-// Load environment variables
-if (process.env.NODE_ENV !== 'production') {
-  require("dotenv").config();
-}
-
-const app = express();
-const static = require("./routes/static");
+const express = require("express")
+const expressLayouts = require("express-ejs-layouts")
+const env = require("dotenv").config()
+const app = express()
+const static = require("./routes/static")
+const baseController = require("./controllers/baseController")
 
 /* ***********************
  * View Engine and Templates
  *************************/
-app.set("view engine", "ejs");
-app.use(expressLayouts);
-app.set("layout", "./layouts/layout");
-
-/* ***********************
- * Static Files Middleware
- *************************/
-app.use(express.static('public'));
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") // not at views root
 
 /* ***********************
  * Routes
  *************************/
+app.use(static)
+
+// Middleware to set baseURL for all views
 app.use((req, res, next) => {
-  // Set baseURL based on environment
   res.locals.baseURL = process.env.NODE_ENV === 'production' 
     ? 'https://web-backend-course.onrender.com'
-    : 'http://localhost:5500';
-  next();
-});
+    : 'http://localhost:5500'
+  next()
+})
 
-app.use(static);
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-/* ***********************
- * Express Route for Home Page
- *************************/
-app.get("/", function(req, res){
-  res.render("index", {
-    title: "Home",
-    metaDescription: "Welcome to CSE Motors - Your trusted automotive partner"
-  });
-});
+// Temporary placeholder route for vehicle classifications, seen by clicking the nav options
+app.get("/inv/type/:classificationId", (req, res) => {
+  res.send(`
+    <h1>Vehicle Classification View</h1>
+    <p>You requested classification ID: ${req.params.classificationId}</p>
+    <p>This route will be fully implemented in the next activity.</p>
+    <a href="/">← Back to Home</a>
+  `)
+})
 
-/* ***********************
- * Test route for Render
- *************************/
-app.get("/render-test", function(req, res){
-  res.send("Render deployment successful at: " + new Date().toISOString());
-});
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Index route
+app.get("/", baseController.buildHome)
+
+
+
+// Index route
+app.get("/", baseController.buildHome)
+
 
 /* ***********************
  * Local Server Information
- * VALUES FROM .env OR DEFAULTS
+ * Values from .env (defaults in case .env is not working)
  *************************/
-const port = process.env.PORT || 5500;
-const host = process.env.HOST || '0.0.0.0'; // CRITICAL: 0.0.0.0 for Render
+const port = process.env.PORT
+const host = process.env.HOST
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, host, () => {
-  console.log(`Server listening on http://${host}:${port}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+app.listen(port, () => {
+  console.log(`app listening on ${host}:${port}`)
+})
