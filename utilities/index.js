@@ -2,7 +2,7 @@ const invModel = require("../models/inventory-model")
 const Util = {}
 
 /* ************************
- * Constructs the nav HTML unordered list
+ * To create the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
@@ -25,7 +25,7 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
-* Build the classification view HTML
+* To build the classification view HTML
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
   let grid
@@ -56,5 +56,32 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* **************************************
+* To build the vehicle detail HTML
+* ************************************ */
+Util.buildVehicleDetail = async function(vehicle){
+  let detail = '<div class="vehicle-detail">'
+  detail += '<div class="vehicle-image">'
+  detail += '<img src="' + vehicle.inv_image + '" alt="' + vehicle.inv_make + ' ' + vehicle.inv_model + '">'
+  detail += '</div>'
+  detail += '<div class="vehicle-info">'
+  detail += '<h2>' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
+  detail += '<p class="vehicle-price">$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
+  detail += '<p><strong>Mileage:</strong> ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + ' miles</p>'
+  detail += '<p><strong>Color:</strong> ' + vehicle.inv_color + '</p>'
+  detail += '<p><strong>Description:</strong> ' + vehicle.inv_description + '</p>'
+  detail += '</div>'
+  detail += '</div>'
+  return detail
+}
+
+/* ****************************************
+* Middleware to handle errors
+* Wrap other function in this for 
+* General Error Handling
+**************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
 
 module.exports = Util
