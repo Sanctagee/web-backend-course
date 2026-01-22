@@ -244,7 +244,7 @@ main {
 
 .hero-text h2 {
   font-size: 2.5rem;
-  color: var(--accent-color);
+  color: var(--text-color);
   margin-bottom: 1.5rem;
   font-weight: 700;
 }
@@ -257,7 +257,7 @@ main {
 
 .features-list li {
   font-size: 1.2rem;
-  color: var(--accent-color);
+  color: var(--text-color);
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
@@ -370,7 +370,7 @@ main {
 .upgrade-item h3 {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--white);
+  color: var(--text-color);
   padding: 0.5rem;
 }
 
