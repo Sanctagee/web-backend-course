@@ -25,6 +25,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 a {
@@ -406,6 +407,256 @@ main {
   transform: translateX(5px);
   box-shadow: var(--shadow-md);
 }
+
+/* ==========================================
+   INVENTORY CLASSIFICATION GRID STYLES
+   ========================================== */
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+  margin: 0;
+}
+
+#inv-display li {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-display li:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+#inv-display li a {
+  display: block;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+#inv-display li img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  transition: var(--transition);
+}
+
+#inv-display li:hover img {
+  transform: scale(1.05);
+}
+
+#inv-display .namePrice {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-display .namePrice hr {
+  border: none;
+  border-top: 2px solid var(--accent-color);
+  margin: 0.5rem 0 1rem 0;
+}
+
+#inv-display h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+#inv-display h2 a {
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+#inv-display h2 a:hover {
+  color: var(--accent-color);
+}
+
+#inv-display span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--success-green);
+  margin-top: auto;
+}
+
+/* Responsive Grid for Tablets */
+@media (max-width: 1024px) {
+  #inv-display {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  #inv-display li img {
+    height: 200px;
+  }
+}
+
+/* Responsive Grid for Mobile */
+@media (max-width: 768px) {
+  #inv-display {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    padding: 1rem 0;
+  }
+  
+  #inv-display li img {
+    height: 180px;
+  }
+  
+  #inv-display h2 {
+    font-size: 1.1rem;
+  }
+  
+  #inv-display span {
+    font-size: 1.2rem;
+  }
+  
+  #inv-display .namePrice {
+    padding: 1rem;
+  }
+}
+
+/* Single Column on Very Small Screens */
+@media (max-width: 480px) {
+  #inv-display {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  #inv-display li img {
+    height: 220px;
+  }
+}
+
+
+/* ==========================================
+   DETAIL PAGE STYLES
+   ========================================== */
+
+.detail-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* padding: 2rem; */
+  align-items: center;
+  min-height: 100vh;
+}
+
+.detail-content{
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+  padding: 2rem;
+  align-items: center;
+  min-height: 40vh;
+}
+/* ==========================================
+   ERROR PAGE STYLES
+   ========================================== */
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 600px;
+  background: var(--white);
+  padding: 3rem 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.error-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.error-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.btn-home {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--success-green) 100%);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-home:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--success-green) 0%, var(--accent-color) 100%);
+}
+
+.btn-home:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive Error Page */
+@media (max-width: 768px) {
+  .error-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .error-icon {
+    font-size: 4rem;
+  }
+  
+  .error-title {
+    font-size: 1.6rem;
+  }
+  
+  .error-message {
+    font-size: 1rem;
+  }
+  
+  .btn-home {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+  }
+}
+
 
 /* Footer Styles */
 footer {
