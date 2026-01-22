@@ -61,18 +61,40 @@ Util.buildClassificationGrid = async function(data){
 * To build the vehicle detail HTML
 * ************************************ */
 Util.buildVehicleDetail = async function(vehicle){
-  let detail = '<div class="vehicle-detail">'
-  detail += '<div class="vehicle-image">'
-  detail += '<img src="' + vehicle.inv_image + '" alt="' + vehicle.inv_make + ' ' + vehicle.inv_model + '">'
+  let detail = '<div class="vehicle-detail-container">'
+  detail += '<div class="vehicle-detail-content">'
+  
+  // Vehicle Image
+  detail += '<div class="vehicle-detail-image">'
+  detail += '<img src="' + vehicle.inv_image + '" alt="' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '">'
   detail += '</div>'
-  detail += '<div class="vehicle-info">'
-  detail += '<h2>' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
+  
+  // Vehicle Information
+  detail += '<div class="vehicle-detail-info">'
+  detail += '<h2 class="vehicle-name">' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
   detail += '<p class="vehicle-price">$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
-  detail += '<p><strong>Mileage:</strong> ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + ' miles</p>'
-  detail += '<p><strong>Color:</strong> ' + vehicle.inv_color + '</p>'
-  detail += '<p><strong>Description:</strong> ' + vehicle.inv_description + '</p>'
+  
+  detail += '<div class="vehicle-specs">'
+  detail += '<div class="spec-item">'
+  detail += '<span class="spec-label">Mileage:</span>'
+  detail += '<span class="spec-value">' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + ' miles</span>'
+  detail += '</div>'
+  
+  detail += '<div class="spec-item">'
+  detail += '<span class="spec-label">Color:</span>'
+  detail += '<span class="spec-value">' + vehicle.inv_color + '</span>'
   detail += '</div>'
   detail += '</div>'
+  
+  detail += '<div class="vehicle-description">'
+  detail += '<h3>Description</h3>'
+  detail += '<p>' + vehicle.inv_description + '</p>'
+  detail += '</div>'
+  
+  detail += '</div>'
+  detail += '</div>' 
+  detail += '</div>' 
+  
   return detail
 }
 
