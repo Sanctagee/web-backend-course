@@ -8,7 +8,7 @@
   --accent-color: #05bfdb;
   --dark-accent: #001524;
   --text-color: #2c3e50;
-  --text-light: #5a6c7d;
+  --text-light: #3a4c5d;
   --light-bg: #f8f9fa;
   --white: #ffffff;
   --success-green: #10a37f;
@@ -19,6 +19,7 @@
   --border-radius-sm: 8px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 /* Reset and Base Styles */
 * {
@@ -31,6 +32,7 @@
 a {
   text-decoration: none;
   color: inherit;
+  /* color: var(--primary-color); */
   transition: var(--transition);
 }
 
@@ -540,26 +542,202 @@ main {
 
 
 /* ==========================================
-   DETAIL PAGE STYLES
+   VEHICLE DETAIL PAGE STYLES (CENTERED & BEAUTIFUL)
    ========================================== */
 
-.detail-container{
+.vehicle-detail-container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  /* padding: 2rem; */
-  align-items: center;
-  min-height: 100vh;
+  align-items: flex-start;
+  padding: 2rem;
+  min-height: 60vh;
 }
 
-.detail-content{
-  display: flex;
-  justify-content: center;
-  /* flex-direction: column; */
-  padding: 2rem;
-  align-items: center;
-  min-height: 40vh;
+.detail-container h1{
+  text-align: center;
 }
+
+.vehicle-detail-content {
+  max-width: 1000px;
+  width: 100%;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+/* Vehicle Image Section */
+.vehicle-detail-image {
+  background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.vehicle-detail-image img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.vehicle-detail-image img:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Vehicle Information Section */
+.vehicle-detail-info {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.vehicle-name {
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.vehicle-price {
+  font-size: 2.5rem;
+  color: var(--success-green);
+  font-weight: 700;
+  margin: 0;
+  padding: 1rem 0;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+/* Vehicle Specifications */
+.vehicle-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--light-bg);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+}
+
+.spec-item:hover {
+  background: linear-gradient(135deg, var(--light-bg) 0%, rgba(5, 191, 219, 0.1) 100%);
+  transform: translateX(5px);
+}
+
+.spec-label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.spec-value {
+  font-weight: 500;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* Vehicle Description */
+.vehicle-description {
+  margin-top: 1rem;
+}
+
+.vehicle-description h3 {
+  font-size: 1.3rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.vehicle-description p {
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+/* Responsive Design for Vehicle Detail */
+@media (max-width: 768px) {
+  .vehicle-detail-container {
+    padding: 1rem;
+  }
+
+  .vehicle-detail-content {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .vehicle-detail-image {
+    padding: 1.5rem;
+  }
+
+  .vehicle-detail-info {
+    padding: 1.5rem;
+  }
+
+  .vehicle-name {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .vehicle-price {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .spec-item {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .spec-label,
+  .spec-value {
+    font-size: 1rem;
+  }
+
+  .vehicle-description h3 {
+    font-size: 1.2rem;
+  }
+
+  .vehicle-description p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicle-detail-info {
+    padding: 1rem;
+  }
+
+  .vehicle-name {
+    font-size: 1.4rem;
+  }
+
+  .vehicle-price {
+    font-size: 1.8rem;
+  }
+
+  .spec-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+}
+
 /* ==========================================
    ERROR PAGE STYLES
    ========================================== */
@@ -682,7 +860,8 @@ footer::before {
 .copyright {
   font-size: 0.95rem;
   font-weight: 300;
-  opacity: 0.9;
+  opacity: 1;
+  
 }
 
 /* Responsive Design - Mobile First */
