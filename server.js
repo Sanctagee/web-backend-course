@@ -56,11 +56,6 @@ app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
-// Intentional error route for testing
-app.get("/trigger-error", utilities.handleErrors(async (req, res, next) => {
-  throw new Error("Intentional 500 error for testing")
-}))
-
 /* ***********************
  * File Not Found (404) Handler
  * Must be after all other routes
