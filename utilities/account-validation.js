@@ -27,7 +27,7 @@ validate.registrationRules = () => {
     // valid email is required and cannot already exist in the database
     body("account_email")
         .trim()
-        .escape()
+        // .escape()
         .notEmpty()
         .isEmail()
         .normalizeEmail()
