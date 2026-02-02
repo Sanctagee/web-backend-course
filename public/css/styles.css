@@ -13,10 +13,10 @@
   --white: #ffffff;
   --success-green: #10a37f;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --border-radius: 12px;
-  --border-radius-sm: 8px;
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.36);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.51);
+  --border-radius: 12px 0 12px 0;
+  --border-radius-sm: 8px 0 8px 0;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1078,3 +1078,462 @@ button:focus {
     background: white;
   }
 }
+
+
+/* ==========================================
+   FLASH MESSAGES STYLES
+   ========================================== */
+
+/* Base flash message container */
+ul[class] {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+/* Common styles for all message types */
+ul.notice,
+ul.error,
+ul.success,
+ul.warning,
+ul.info {
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  animation: slideInDown 0.4s ease-out;
+  margin-bottom: 1.5rem;
+}
+
+/* Animation for message appearance */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Individual message items */
+ul.notice li,
+ul.error li,
+ul.success li,
+ul.warning li,
+ul.info li {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-left: 5px solid;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Add icons before messages using pseudo-elements */
+ul.notice li::before,
+ul.error li::before,
+ul.success li::before,
+ul.warning li::before,
+ul.info li::before {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* NOTICE/INFO Messages - Blue theme */
+ul.notice,
+ul.info {
+  background: linear-gradient(135deg, rgba(5, 191, 219, 0.1) 0%, rgba(8, 131, 149, 0.05) 100%);
+  border: 1px solid rgba(5, 191, 219, 0.3);
+}
+
+ul.notice li,
+ul.info li {
+  color: var(--secondary-color);
+  border-left-color: var(--accent-color);
+}
+
+ul.notice li::before,
+ul.info li::before {
+  content: 'ℹ️';
+}
+
+/* ERROR Messages - Red theme */
+ul.error {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(185, 28, 28, 0.05) 100%);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+ul.error li {
+  color: #991b1b;
+  border-left-color: #dc2626;
+}
+
+ul.error li::before {
+  content: '❌';
+}
+
+/* SUCCESS Messages - Green theme */
+ul.success {
+  background: linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(5, 150, 105, 0.05) 100%);
+  border: 1px solid rgba(16, 163, 127, 0.3);
+}
+
+ul.success li {
+  color: #065f46;
+  border-left-color: var(--success-green);
+}
+
+ul.success li::before {
+  content: '✅';
+}
+
+/* WARNING Messages - Yellow/Orange theme */
+ul.warning {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.05) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+ul.warning li {
+  color: #92400e;
+  border-left-color: #f59e0b;
+}
+
+ul.warning li::before {
+  content: '⚠️';
+}
+
+/* Hover effect for interactive feel */
+ul.notice li:hover,
+ul.error li:hover,
+ul.success li:hover,
+ul.warning li:hover,
+ul.info li:hover {
+  transform: translateX(3px);
+  transition: var(--transition);
+}
+
+/* Responsive adjustments for flash messages */
+@media (max-width: 768px) {
+  ul.notice li,
+  ul.error li,
+  ul.success li,
+  ul.warning li,
+  ul.info li {
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  ul.notice li::before,
+  ul.error li::before,
+  ul.success li::before,
+  ul.warning li::before,
+  ul.info li::before {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  ul.notice li,
+  ul.error li,
+  ul.success li,
+  ul.warning li,
+  ul.info li {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ==========================================
+   LOGIN & REGISTRATION FORM STYLES
+   ========================================== */
+
+.login-container,
+.register-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.login-container h1,
+.register-container h1 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Form Styles */
+#loginForm,
+#registrationForm {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--light-bg);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  transition: var(--transition);
+  background: var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Input validation states */
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: #dc2626;
+}
+
+.form-group input:valid:not(:placeholder-shown) {
+  border-color: var(--success-green);
+}
+
+/* Login/Submit Button */
+.btn-login,
+.btn-register {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--success-green) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Poppins', sans-serif;
+  margin-top: 0.5rem;
+}
+
+.btn-login:hover,
+.btn-register:hover {
+  background: linear-gradient(135deg, var(--success-green) 0%, var(--accent-color) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-login:active,
+.btn-register:active {
+  transform: translateY(0);
+}
+
+/* Register Link Section */
+.register-link,
+.login-link {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--light-bg);
+}
+
+.register-link p,
+.login-link p {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.register-link a,
+.login-link a {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.register-link a:hover,
+.login-link a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Password Requirements or Helper Text */
+.form-helper-text {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+/* Form Error Messages */
+.form-error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.form-group.error .form-error {
+  display: block;
+}
+
+.form-group.error input {
+  border-color: #dc2626;
+}
+
+/* Responsive Form Styles */
+@media (max-width: 768px) {
+  .login-container,
+  .register-container {
+    padding: 1.5rem 1rem;
+  }
+
+  #loginForm,
+  #registrationForm {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-container h1,
+  .register-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .btn-login,
+  .btn-register {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container,
+  .register-container {
+    padding: 1rem 0.5rem;
+  }
+
+  #loginForm,
+  #registrationForm {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-container h1,
+  .register-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .btn-login,
+  .btn-register {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .register-link p,
+  .login-link p {
+    font-size: 0.95rem;
+  }
+}
+
+.page-title {
+  text-align: center;
+  color: var(--primary-color);
+  /* margin-bottom: 2rem; */
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+
+/* ==========================================
+   ADDITIONAL REGISTRATION FORM STYLES
+   ========================================== */
+
+/* Required field asterisk */
+.required {
+  color: #dc2626;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+/* Password Toggle Button */
+.password-toggle {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--light-bg);
+  color: var(--text-color);
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.password-toggle:hover {
+  background: var(--accent-color);
+  color: var(--white);
+  border-color: var(--accent-color);
+}
+
+.password-toggle:active {
+  transform: scale(0.98);
+}
+
+/* Enhanced Form Helper Text for Password Requirements */
+.form-helper-text {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+  font-style: normal;
+  line-height: 1.5;
+  background: rgba(5, 191, 219, 0.05);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--accent-color);
+}
+
+/* Responsive Password Toggle */
+@media (max-width: 480px) {
+  .password-toggle {
+    padding: 0.65rem 0.875rem;
+    font-size: 0.9rem;
+  }
+}
+
