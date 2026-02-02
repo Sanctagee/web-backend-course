@@ -6,7 +6,8 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, 'Client') RETURNING *"
     return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
   } catch (error) {
-    return error.message
+    console.error("registerAccount error:", error)
+    return error
   }
 }
 
@@ -19,7 +20,8 @@ async function checkExistingEmail(account_email){
     const email = await pool.query(sql, [account_email])
     return email.rowCount
   } catch (error) {
-    return error.message
+    console.error("checkExistingEmail error:", error)
+    return 0
   }
 }
 
