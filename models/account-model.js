@@ -1,3 +1,5 @@
+const pool = require("../database/")
+
 /* *****************************
 *   To Register new account
 * *************************** */
