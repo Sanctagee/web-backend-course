@@ -1,0 +1,195 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.locals.title = "Add New Vehicle"
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="add-inventory-form">
+  <p>Please add a new vehicle to the inventory. All fields are required.</p>
+  
+  <form id="addInventoryForm" action="/inv/add-inventory" method="post">
+    
+    <label for="classification_id">Classification*:</label>
+    <%- classificationList %>
+    
+    <label for="inv_make">Make* (minimum 3 characters):</label>
+    <input 
+      type="text" 
+      id="inv_make" 
+      name="inv_make" 
+      required 
+      minlength="3"
+      placeholder="e.g., Ford, Toyota, Honda"
+      value="<%= locals.inv_make || '' %>"
+    >
+    
+    <label for="inv_model">Model* (minimum 3 characters):</label>
+    <input 
+      type="text" 
+      id="inv_model" 
+      name="inv_model" 
+      required 
+      minlength="3"
+      placeholder="e.g., Mustang, Camry, Civic"
+      value="<%= locals.inv_model || '' %>"
+    >
+    
+    <label for="inv_year">Year* (4 digits):</label>
+    <input 
+      type="text" 
+      id="inv_year" 
+      name="inv_year" 
+      required 
+      pattern="^\d{4}$"
+      maxlength="4"
+      title="Year must be exactly 4 digits"
+      placeholder="e.g., 2023"
+      value="<%= locals.inv_year || '' %>"
+    >
+    
+    <label for="inv_description">Description* (minimum 10 characters):</label>
+    <textarea 
+      id="inv_description" 
+      name="inv_description" 
+      required 
+      minlength="10"
+      rows="4"
+      placeholder="Provide a detailed description of the vehicle"
+    ><%= locals.inv_description || '' %></textarea>
+    
+    <label for="inv_image">Image Path* (default: /images/vehicles/no-image.png):</label>
+    <input 
+      type="text" 
+      id="inv_image" 
+      name="inv_image" 
+      required 
+      placeholder="/images/vehicles/no-image.png"
+      value="<%= locals.inv_image || '/images/vehicles/no-image.png' %>"
+    >
+    
+    <label for="inv_thumbnail">Thumbnail Path* (default: /images/vehicles/no-image-tn.png):</label>
+    <input 
+      type="text" 
+      id="inv_thumbnail" 
+      name="inv_thumbnail" 
+      required 
+      placeholder="/images/vehicles/no-image-tn.png"
+      value="<%= locals.inv_thumbnail || '/images/vehicles/no-image-tn.png' %>"
+    >
+    
+    <label for="inv_price">Price* (decimal or integer):</label>
+    <input 
+      type="number" 
+      id="inv_price" 
+      name="inv_price" 
+      required 
+      min="0"
+      step="0.01"
+      placeholder="e.g., 25000 or 25000.50"
+      value="<%= locals.inv_price || '' %>"
+    >
+    
+    <label for="inv_miles">Miles* (digits only, no commas):</label>
+    <input 
+      type="number" 
+      id="inv_miles" 
+      name="inv_miles" 
+      required 
+      min="0"
+      step="1"
+      placeholder="e.g., 39500"
+      value="<%= locals.inv_miles || '' %>"
+    >
+    
+    <label for="inv_color">Color* (minimum 2 characters):</label>
+    <input 
+      type="text" 
+      id="inv_color" 
+      name="inv_color" 
+      required 
+      minlength="2"
+      placeholder="e.g., Red, Blue, Silver"
+      value="<%= locals.inv_color || '' %>"
+    >
+    
+    <button type="submit" class="submit-btn">Add Vehicle</button>
+  </form>
+</div>
+
+<script>
+  // Client-side validation
+  const form = document.getElementById('addInventoryForm');
+  
+  form.addEventListener('submit', function(event) {
+    let isValid = true;
+    const errors = [];
+    
+    // Validate classification selection
+    const classification = document.getElementById('classificationList');
+    if (!classification.value) {
+      errors.push('Please select a classification');
+      isValid = false;
+    }
+    
+    // Validate year (4 digits)
+    const year = document.getElementById('inv_year').value;
+    if (!/^\d{4}$/.test(year)) {
+      errors.push('Year must be exactly 4 digits');
+      isValid = false;
+    }
+    
+    // Validate miles (no commas, digits only)
+    const miles = document.getElementById('inv_miles').value;
+    if (!/^\d+$/.test(miles)) {
+      errors.push('Miles must be digits only (no commas)');
+      isValid = false;
+    }
+    
+    if (!isValid) {
+      event.preventDefault();
+      alert('Please fix the following errors:\n' + errors.join('\n'));
+      return false;
+    }
+  });
+  
+  // Visual feedback for validation (CSS classes: valid/invalid)
+  const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+  
+  inputs.forEach(input => {
+    input.addEventListener('blur', function() {
+      if (this.validity.valid) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+      } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+      }
+    });
+    
+    input.addEventListener('input', function() {
+      if (this.value) {
+        if (this.validity.valid) {
+          this.classList.add('valid');
+          this.classList.remove('invalid');
+        } else {
+          this.classList.add('invalid');
+          this.classList.remove('valid');
+        }
+      } else {
+        this.classList.remove('valid', 'invalid');
+      }
+    });
+  });
+</script>
+
+

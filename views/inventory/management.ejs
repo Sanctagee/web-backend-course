@@ -1,0 +1,31 @@
+
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.locals.title = "Vehicle Management"
+} %>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="vehicle-management">
+  <h2>Inventory Management Tasks</h2>
+  <p>Use the links below to manage vehicle classifications and inventory.</p>
+  
+  <ul class="management-links">
+    <li>
+      <a href="/inv/add-classification" title="Click to add a new classification">Add New Classification</a>
+    </li>
+    <li>
+      <a href="/inv/add-inventory" title="Click to add a new vehicle to inventory">Add New Vehicle</a>
+    </li>
+  </ul>
+</div>
+
+
