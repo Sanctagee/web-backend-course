@@ -127,55 +127,26 @@
 </div>
 
 <script>
-  // Client-side validation
+  // Visual feedback for validation (NO ALERTS - just CSS classes)
   const form = document.getElementById('addInventoryForm');
-  
-  form.addEventListener('submit', function(event) {
-    let isValid = true;
-    const errors = [];
-    
-    // Validate classification selection
-    const classification = document.getElementById('classificationList');
-    if (!classification.value) {
-      errors.push('Please select a classification');
-      isValid = false;
-    }
-    
-    // Validate year (4 digits)
-    const year = document.getElementById('inv_year').value;
-    if (!/^\d{4}$/.test(year)) {
-      errors.push('Year must be exactly 4 digits');
-      isValid = false;
-    }
-    
-    // Validate miles (no commas, digits only)
-    const miles = document.getElementById('inv_miles').value;
-    if (!/^\d+$/.test(miles)) {
-      errors.push('Miles must be digits only (no commas)');
-      isValid = false;
-    }
-    
-    if (!isValid) {
-      event.preventDefault();
-      alert('Please fix the following errors:\n' + errors.join('\n'));
-      return false;
-    }
-  });
-  
-  // Visual feedback for validation (CSS classes: valid/invalid)
   const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
   
+  // Add real-time visual feedback for all inputs
   inputs.forEach(input => {
+    // On blur (when user leaves the field)
     input.addEventListener('blur', function() {
-      if (this.validity.valid) {
-        this.classList.add('valid');
-        this.classList.remove('invalid');
-      } else {
-        this.classList.add('invalid');
-        this.classList.remove('valid');
+      if (this.value) {
+        if (this.validity.valid) {
+          this.classList.add('valid');
+          this.classList.remove('invalid');
+        } else {
+          this.classList.add('invalid');
+          this.classList.remove('valid');
+        }
       }
     });
     
+    // On input (as user types)
     input.addEventListener('input', function() {
       if (this.value) {
         if (this.validity.valid) {
@@ -186,10 +157,23 @@
           this.classList.remove('valid');
         }
       } else {
+        // Remove classes if field is empty
         this.classList.remove('valid', 'invalid');
       }
     });
   });
+  
+  // Special handling for select dropdown
+  const classificationSelect = document.getElementById('classificationList');
+  if (classificationSelect) {
+    classificationSelect.addEventListener('change', function() {
+      if (this.value) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+      } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+      }
+    });
+  }
 </script>
-
-
