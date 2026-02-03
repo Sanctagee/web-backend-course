@@ -1537,3 +1537,592 @@ ul.info li:hover {
   }
 }
 
+/* ==========================================
+   INVENTORY MANAGEMENT STYLES
+   ========================================== */
+
+.vehicle-management {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.vehicle-management h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.vehicle-management p {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.management-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.management-links li {
+  background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 2px solid var(--light-bg);
+}
+
+.management-links li:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-color);
+}
+
+.management-links li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+}
+
+.management-links li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent-color) 0%, var(--success-green) 100%);
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+.management-links li:hover a::before {
+  transform: scaleX(1);
+}
+
+.management-links li a:hover {
+  color: var(--accent-color);
+}
+
+/* Add icons using pseudo-elements */
+.management-links li:nth-child(1) a::after {
+  content: '📁';
+  font-size: 3rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+.management-links li:nth-child(2) a::after {
+  content: '🚗';
+  font-size: 3rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+/* Responsive Management View */
+@media (max-width: 768px) {
+  .vehicle-management {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .vehicle-management h2 {
+    font-size: 1.5rem;
+  }
+
+  .vehicle-management p {
+    font-size: 1rem;
+  }
+
+  .management-links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .management-links li a {
+    padding: 2.5rem 1.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicle-management {
+    padding: 1rem;
+  }
+
+  .management-links li a {
+    padding: 2rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .management-links li:nth-child(1) a::after,
+  .management-links li:nth-child(2) a::after {
+    font-size: 2.5rem;
+    margin-top: 0.75rem;
+  }
+}
+
+
+/* ==========================================
+   TO ADD CLASSIFICATION FORM STYLES
+   ========================================== */
+
+.add-classification-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.add-classification-form p {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.add-classification-form p strong {
+  color: var(--primary-color);
+  font-weight: 600;
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(220, 38, 38, 0.05);
+  border-left: 4px solid #dc2626;
+  border-radius: var(--border-radius-sm);
+}
+
+#addClassificationForm {
+  margin-top: 2rem;
+}
+
+#addClassificationForm label {
+  display: block;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+#addClassificationForm input[type="text"] {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius-sm);
+  font-size: 1.05rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  transition: var(--transition);
+  background: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+#addClassificationForm input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+}
+
+#addClassificationForm input[type="text"]:invalid:not(:placeholder-shown) {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.02);
+}
+
+#addClassificationForm input[type="text"]:valid:not(:placeholder-shown) {
+  border-color: var(--success-green);
+  background: rgba(16, 163, 127, 0.02);
+}
+
+.input-hint {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  padding: 0.5rem 0.75rem;
+  background: rgba(5, 191, 219, 0.05);
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--accent-color);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1.1rem 2rem;
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--success-green) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Poppins', sans-serif;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, var(--success-green) 0%, var(--accent-color) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Add Classification Form */
+@media (max-width: 768px) {
+  .add-classification-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  #addClassificationForm input[type="text"] {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+
+  .submit-btn {
+    padding: 1rem 1.5rem;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-classification-form {
+    padding: 1rem;
+  }
+
+  #addClassificationForm label {
+    font-size: 1rem;
+  }
+
+  #addClassificationForm input[type="text"] {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .input-hint {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* ==========================================
+   TO ADD INVENTORY FORM STYLES
+   ========================================== */
+
+.add-inventory-form {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.add-inventory-form > p {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(5, 191, 219, 0.05);
+  border-radius: var(--border-radius-sm);
+  border-left: 4px solid var(--accent-color);
+}
+
+#addInventoryForm {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#addInventoryForm label {
+  display: block;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+#addInventoryForm input[type="text"],
+#addInventoryForm input[type="number"],
+#addInventoryForm textarea,
+#addInventoryForm select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  transition: var(--transition);
+  background: var(--white);
+}
+
+#addInventoryForm input:focus,
+#addInventoryForm textarea:focus,
+#addInventoryForm select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+}
+
+#addInventoryForm textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: 'Poppins', sans-serif;
+}
+
+#addInventoryForm select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230a4d68' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 3rem;
+}
+
+/* Validation States for Add Inventory Form */
+#addInventoryForm input.valid,
+#addInventoryForm textarea.valid,
+#addInventoryForm select.valid {
+  border-color: var(--success-green);
+  background-color: rgba(16, 163, 127, 0.02);
+}
+
+#addInventoryForm input.invalid,
+#addInventoryForm textarea.invalid,
+#addInventoryForm select.invalid {
+  border-color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.02);
+}
+
+/* Add checkmark/cross icons for validation */
+#addInventoryForm input.valid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%2310a37f' d='M7.629 14.566l-4.243-4.243-1.886 1.886L7.629 18.338 18.338 7.629l-1.886-1.886z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 3rem;
+}
+
+#addInventoryForm input.invalid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23dc2626' d='M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm4.95 13.536L13.536 14.95 10 11.414 6.464 14.95 5.05 13.536 8.586 10 5.05 6.464 6.464 5.05 10 8.586l3.536-3.536 1.414 1.414L11.414 10l3.536 3.536z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 3rem;
+}
+
+/* Grid layout for better organization */
+@media (min-width: 769px) {
+  #addInventoryForm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #addInventoryForm label[for="inv_description"],
+  #addInventoryForm textarea,
+  #addInventoryForm label[for="classification_id"],
+  #addInventoryForm select {
+    grid-column: 1 / -1;
+  }
+
+  #addInventoryForm .submit-btn {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Responsive Add Inventory Form */
+@media (max-width: 768px) {
+  .add-inventory-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  #addInventoryForm {
+    grid-template-columns: 1fr;
+  }
+
+  #addInventoryForm input,
+  #addInventoryForm textarea,
+  #addInventoryForm select {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  #addInventoryForm textarea {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-inventory-form {
+    padding: 1rem;
+  }
+
+  .add-inventory-form > p {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  #addInventoryForm label {
+    font-size: 0.95rem;
+  }
+
+  #addInventoryForm input,
+  #addInventoryForm textarea,
+  #addInventoryForm select {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+
+/* ==========================================
+   ENHANCED ERROR DISPLAY FOR FORMS
+   ========================================== */
+
+/* When server-side validation returns errors */
+.add-classification-form ul.notice,
+.add-inventory-form ul.notice {
+  margin-bottom: 2rem;
+}
+
+/* Individual field errors */
+.field-error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+  font-weight: 500;
+}
+
+/* Success state for entire form */
+.form-success {
+  background: linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(5, 150, 105, 0.05) 100%);
+  border: 2px solid var(--success-green);
+  border-radius: var(--border-radius-sm);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #065f46;
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   LOADING STATES & ANIMATIONS
+   ========================================== */
+
+.submit-btn.loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.submit-btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ==========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ========================================== */
+
+/* Focus styles for form inputs */
+#addClassificationForm input:focus,
+#addInventoryForm input:focus,
+#addInventoryForm textarea:focus,
+#addInventoryForm select:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Skip to content for keyboard navigation */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-color);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  z-index: 100;
+}
+
+.skip-to-content:focus {
+  top: 10px;
+  left: 10px;
+}
+
+
+/* ==========================================
+   PRINT STYLES FOR MANAGEMENT PAGES
+   ========================================== */
+
+@media print {
+  .management-links li a::after,
+  .submit-btn,
+  .input-hint {
+    display: none;
+  }
+
+  .vehicle-management,
+  .add-classification-form,
+  .add-inventory-form {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+  }
+}
