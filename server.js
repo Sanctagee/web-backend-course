@@ -17,6 +17,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/") 
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 
 /* ***********************
@@ -30,7 +31,7 @@ app.set("layout", "./layouts/layout")
 
 /* ***********************
  * Middlewares
- * Session Id
+ * Session Id   
  * ************************/
  app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -45,16 +46,24 @@ app.set("layout", "./layouts/layout")
 
 
 // Express Messages Middleware
+// Between the request and response
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
 
-
 // Body Parser Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+// Login Activity
+app.use(cookieParser())
+
+// Login Process Activity
+// app.use(utilities.checkJWTToken)
+
+
 
 
 /* ***********************
