@@ -26,8 +26,6 @@ async function checkExistingEmail(account_email){
     return 0
   }
 }
-
-
 /* *****************************
 * Return account data using email address
 * ***************************** */
