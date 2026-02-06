@@ -1,0 +1,16 @@
+<% if (title) { %>
+  <h1 class="page-title"><%= title %></h1>
+<% } else {
+  res.locals.title = "Account Management"
+} %>
+
+<%- messages() %>
+
+<section class="account-management-container">
+    <h2>Welcome to Your Account</h2>
+    <p>You're logged in!</p>
+    
+    <div class="account-actions">
+        <p>Manage your account settings and preferences here.</p>
+    </div>
+</section>
