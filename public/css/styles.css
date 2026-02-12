@@ -2126,3 +2126,684 @@ ul.info li:hover {
     border: 1px solid #e5e7eb;
   }
 }
+
+
+
+/* ==========================================
+   ACCOUNT MANAGEMENT PAGE STYLES
+   ========================================== */
+
+.account-management-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.account-management-container h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.account-management-container > p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Account Information Section */
+.account-info {
+  background: linear-gradient(135deg, rgba(5, 191, 219, 0.05) 0%, rgba(8, 131, 149, 0.02) 100%);
+  border-radius: var(--border-radius-sm);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 5px solid var(--accent-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.account-info h3 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.account-info p {
+  font-size: 1.05rem;
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-info p strong {
+  color: var(--primary-color);
+  font-weight: 600;
+  min-width: 150px;
+}
+
+/* Account Actions Section */
+.account-actions {
+  background: var(--light-bg);
+  border-radius: var(--border-radius-sm);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.account-actions p {
+  font-size: 1rem;
+  color: var(--text-light);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Responsive Account Management */
+@media (max-width: 768px) {
+  .account-management-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .account-management-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .account-info {
+    padding: 1.25rem;
+  }
+
+  .account-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .account-info p {
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .account-info p strong {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-management-container {
+    padding: 1rem;
+  }
+
+  .account-management-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .account-info {
+    padding: 1rem;
+  }
+
+  .account-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .account-info p {
+    font-size: 0.95rem;
+  }
+
+  .account-actions {
+    padding: 1rem;
+  }
+
+  .account-actions p {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ==========================================
+   ACCOUNT UPDATE PAGE STYLES
+   ========================================== */
+
+.account-update-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.account-update-container h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.account-update-container h2:first-of-type {
+  margin-top: 0;
+}
+
+.account-update-container form {
+  background: linear-gradient(135deg, rgba(5, 191, 219, 0.03) 0%, rgba(8, 131, 149, 0.01) 100%);
+  padding: 2rem;
+  border-radius: var(--border-radius-sm);
+  border-left: 5px solid var(--accent-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.account-update-container label {
+  display: block;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.account-update-container label:first-of-type {
+  margin-top: 0;
+}
+
+.account-update-container input[type="text"],
+.account-update-container input[type="email"],
+.account-update-container input[type="password"] {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  transition: var(--transition);
+  background: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.account-update-container input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+}
+
+.account-update-container input:valid:not(:placeholder-shown) {
+  border-color: var(--success-green);
+}
+
+.account-update-container input:invalid:not(:placeholder-shown) {
+  border-color: #dc2626;
+}
+
+.account-update-container .btn-primary {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+/* Style the second form differently for visual separation */
+.account-update-container form:last-of-type {
+  background: linear-gradient(135deg, rgba(16, 163, 127, 0.03) 0%, rgba(5, 150, 105, 0.01) 100%);
+  border-left-color: var(--success-green);
+}
+
+.account-update-container form:last-of-type h2 {
+  border-bottom-color: var(--success-green);
+}
+
+/* Responsive Account Update */
+@media (max-width: 768px) {
+  .account-update-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .account-update-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .account-update-container form {
+    padding: 1.5rem;
+  }
+
+  .account-update-container input[type="text"],
+  .account-update-container input[type="email"],
+  .account-update-container input[type="password"] {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .account-update-container .btn-primary {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-update-container {
+    padding: 1rem;
+  }
+
+  .account-update-container h2 {
+    font-size: 1.2rem;
+  }
+
+  .account-update-container form {
+    padding: 1rem;
+  }
+
+  .account-update-container label {
+    font-size: 0.95rem;
+  }
+
+  .account-update-container input[type="text"],
+  .account-update-container input[type="email"],
+  .account-update-container input[type="password"] {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .account-update-container .btn-primary {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .form-helper-text {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* ========================================
+   INVENTORY MANAGEMENT TABLE STYLING
+   ======================================== */
+
+#inventoryDisplay {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: var(--white);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+#inventoryDisplay thead {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+}
+
+#inventoryDisplay th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#inventoryDisplay td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#inventoryDisplay tbody tr {
+    transition: var(--transition);
+}
+
+#inventoryDisplay tbody tr:hover {
+    background-color: rgba(5, 191, 219, 0.05);
+}
+
+/* Style the Modify and Delete links as buttons */
+#inventoryDisplay td a {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    margin: 0 0.35rem;
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+#inventoryDisplay td a[href*='edit'] {
+    background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+    color: var(--white);
+}
+
+#inventoryDisplay td a[href*='edit']:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+#inventoryDisplay td a[href*='delete'] {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: var(--white);
+}
+
+#inventoryDisplay td a[href*='delete']:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ========================================
+   MANAGE INVENTORY SELECT DROPDOWN STYLING
+   ======================================== */
+
+.vehicle-management select,
+#classificationList {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 2rem auto;
+    display: block;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%230a4d68' d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.25rem center;
+    padding-right: 3.5rem;
+}
+
+.vehicle-management select:hover,
+#classificationList:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.vehicle-management select:focus,
+#classificationList:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.2);
+}
+
+/* Responsive Select Dropdown */
+@media (max-width: 768px) {
+    .vehicle-management select,
+    #classificationList {
+        max-width: 100%;
+        padding: 0.875rem 1.25rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .vehicle-management select,
+    #classificationList {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+
+
+/* ========================================
+   DELETE CONFIRMATION PAGE STYLING
+   ======================================== */
+
+.delete-confirm-section {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.delete-confirm-section h3 {
+    color: #dc2626;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.warning-text {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.05) 100%);
+    border: 2px solid #f59e0b;
+    border-left: 5px solid #dc2626;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: var(--border-radius-sm);
+    color: #92400e;
+    font-weight: 500;
+}
+
+.vehicle-info {
+    background: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-sm);
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--accent-color);
+}
+
+.vehicle-info h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.vehicle-info p {
+    margin: 0.75rem 0;
+    font-size: 1.05rem;
+    color: var(--text-color);
+}
+
+.vehicle-info p strong {
+    color: var(--primary-color);
+    font-weight: 600;
+    min-width: 100px;
+    display: inline-block;
+}
+
+/* Button styling */
+.delete-form {
+    margin-top: 2rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: var(--white);
+}
+
+.btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-cancel {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    color: var(--white);
+}
+
+.btn-cancel:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   EDIT INVENTORY FORM STYLING
+   ======================================== */
+
+.edit-inventory-form {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.edit-inventory-form > p {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(5, 191, 219, 0.05);
+    border-radius: var(--border-radius-sm);
+    border-left: 4px solid var(--accent-color);
+}
+
+.edit-inventory-form form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.edit-inventory-form label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: var(--text-color);
+}
+
+.edit-inventory-form input,
+.edit-inventory-form textarea,
+.edit-inventory-form select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+}
+
+.edit-inventory-form input:focus,
+.edit-inventory-form textarea:focus,
+.edit-inventory-form select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+}
+
+.edit-inventory-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.edit-inventory-form button {
+    background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+    box-shadow: var(--shadow-sm);
+}
+
+.edit-inventory-form button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.edit-inventory-form button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Responsive Tables and Forms */
+@media (max-width: 768px) {
+    #inventoryDisplay {
+        font-size: 0.9rem;
+    }
+
+    #inventoryDisplay th,
+    #inventoryDisplay td {
+        padding: 0.75rem 1rem;
+    }
+
+    #inventoryDisplay td a {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+        margin: 0.25rem;
+    }
+
+    .delete-confirm-section,
+    .edit-inventory-form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #inventoryDisplay th,
+    #inventoryDisplay td {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    #inventoryDisplay td a {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.8rem;
+        display: block;
+        margin: 0.25rem 0;
+    }
+
+    .delete-confirm-section,
+    .edit-inventory-form {
+        padding: 1rem;
+    }
+}
