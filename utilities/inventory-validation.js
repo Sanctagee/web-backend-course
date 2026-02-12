@@ -152,12 +152,12 @@ validate.checkInventoryData = async (req, res, next) => {
   
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    let classificationList = await utilities.buildClassificationList(classification_id)
+    let classificationSelect = await utilities.buildClassificationList(classification_id)
     res.render("inventory/add-inventory", {
       errors,
       title: "Add New Vehicle",
       nav,
-      classificationList,
+      classificationSelect,
       inv_make,
       inv_model,
       inv_year,
@@ -167,6 +167,40 @@ validate.checkInventoryData = async (req, res, next) => {
       inv_price,
       inv_miles,
       inv_color,
+      classification_id
+    })
+    return
+  }
+  next()
+}
+
+/* ******************************
+ * Check data and return errors or continue to update
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const { inv_id, inv_make, inv_model } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    const classificationSelect = await utilities.buildClassificationList(req.body.classification_id)
+    const itemName = `${inv_make} ${inv_model}`
+    res.render("inventory/edit-inventory", {
+      errors,
+      title: "Edit " + itemName,
+      nav,
+      classificationSelect,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year: req.body.inv_year,
+      inv_description: req.body.inv_description,
+      inv_image: req.body.inv_image,
+      inv_thumbnail: req.body.inv_thumbnail,
+      inv_price: req.body.inv_price,
+      inv_miles: req.body.inv_miles,
+      inv_color: req.body.inv_color,
+      classification_id: req.body.classification_id
     })
     return
   }
