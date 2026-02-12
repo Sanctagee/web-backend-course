@@ -1,0 +1,32 @@
+<h1 class="page-title"><%= title %></h1>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<section class="delete-confirm-section">
+    <h3>Confirm Vehicle Deletion</h3>
+    <p class="warning-text">⚠️ Are you sure you want to permanently delete this vehicle? This action cannot be undone.</p>
+
+    <div class="vehicle-info">
+        <h4>Vehicle Details:</h4>
+        <p><strong>Make:</strong> <%= inv_make %></p>
+        <p><strong>Model:</strong> <%= inv_model %></p>
+        <p><strong>Year:</strong> <%= inv_year %></p>
+        <p><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(inv_price) %></p>
+    </div>
+
+    <form action="/inv/delete" method="post" class="delete-form">
+        <input type="hidden" name="inv_id" value="<%= inv_id %>">
+        
+        <div class="button-group">
+            <button type="submit" class="btn btn-delete">Yes, Delete Vehicle</button>
+            <a href="/inv/" class="btn btn-cancel">Cancel</a>
+        </div>
+    </form>
+</section>
