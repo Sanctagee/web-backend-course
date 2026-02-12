@@ -116,4 +116,104 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+
+/*  **********************************
+ *  Account Update Validation Rules
+ * ********************************* */
+validate.accountUpdateRules = () => {
+  return [
+    // firstname is required and must be string
+    body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."),
+
+    // lastname is required and must be string
+    body("account_lastname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isLength({ min: 2 })
+      .withMessage("Please provide a last name."),
+
+    // valid email is required
+    body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required.")
+      .custom(async (account_email, { req }) => {
+        const account_id = req.body.account_id
+        const account = await accountModel.getAccountByEmail(account_email)
+        // Check if email exists AND belongs to a different account
+        if (account && account.account_id != account_id) {
+          throw new Error("Email exists. Please use a different email")
+        }
+      }),
+  ]
+}
+
+/* ******************************
+ * To Check account update data
+ * ***************************** */
+validate.checkAccountUpdate = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email } = req.body
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/update", {
+      errors,
+      title: "Update Account",
+      nav,
+      account_firstname,
+      account_lastname,
+      account_email,
+    })
+    return
+  }
+  next()
+}
+
+/*  **********************************
+ *  Password Update Validation Rules
+ * ********************************* */
+validate.passwordUpdateRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ]
+}
+
+/* ******************************
+ * To Check password update data
+ * ***************************** */
+validate.checkPasswordUpdate = async (req, res, next) => {
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    const { account_firstname, account_lastname, account_email } = req.body
+    res.render("account/update", {
+      errors,
+      title: "Update Account",
+      nav,
+      account_firstname,
+      account_lastname,
+      account_email,
+    })
+    return
+  }
+  next()
+}
+
 module.exports = validate
