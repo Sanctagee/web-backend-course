@@ -61,7 +61,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 app.use(cookieParser())
 
 // Login Process Activity
-// app.use(utilities.checkJWTToken)
+app.use(utilities.checkJWTToken)
 
 
 
