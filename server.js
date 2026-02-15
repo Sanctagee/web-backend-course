@@ -18,7 +18,7 @@ const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/") 
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
-
+const reviewRoute = require("./routes/reviewRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -103,6 +103,9 @@ app.use("/inv", inventoryRoute)
 
 // Account route
 app.use("/account", accountRoute)
+
+// Review route
+app.use("/review", reviewRoute)
 
 /* ***********************
  * File Not Found (404) Handler
