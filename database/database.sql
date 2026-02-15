@@ -223,3 +223,19 @@ VALUES   (
     5
   );
 
+
+-- Create reviews table
+CREATE TABLE IF NOT EXISTS public.review (
+  review_id SERIAL PRIMARY KEY,
+  inv_id INT NOT NULL,
+  account_id INT NOT NULL,
+  review_text TEXT NOT NULL,
+  review_rating INT NOT NULL CHECK (review_rating >= 1 AND review_rating <= 5),
+  review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (inv_id) REFERENCES public.inventory(inv_id) ON DELETE CASCADE,
+  FOREIGN KEY (account_id) REFERENCES public.account(account_id) ON DELETE CASCADE
+);
+
+-- Add index for faster queries
+CREATE INDEX idx_review_inv_id ON public.review(inv_id);
+
